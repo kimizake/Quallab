@@ -1,7 +1,7 @@
-export default function Home() {
+const About = () => {
   return (
-    <main>
-      <h1>Home</h1>
+    <div>
+      <h1>About</h1>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
@@ -11,6 +11,8 @@ export default function Home() {
         occaecat cupidatat non proident, sunt in culpa qui officia deserunt
         mollit anim id est laborum.
       </p>
-    </main>
+    </div>
   );
-}
+};
+
+export default About;
