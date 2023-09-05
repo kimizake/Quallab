@@ -9,6 +9,11 @@ const BUTTONS = [
 	{ text: "About", href: "/about" },
 ];
 
+const SIGNUP_BUTTONS = [
+	{ text: "Sign Up", href: "#" },
+	{ text: "Log In", href: "#" },
+];
+
 const Hamburger = (props: {
 	isOpen: boolean;
 	setIsOpen: Dispatch<SetStateAction<boolean>>;
@@ -45,11 +50,18 @@ const Hamburger = (props: {
 	);
 };
 
-const NavBarLink = (props: { text: string; href: string; other?: any[] }) => {
+const NavBarLink = (props: {
+	text: string;
+	href: string;
+	isOpen: boolean;
+	setIsOpen: Dispatch<SetStateAction<boolean>>;
+	other?: any[];
+}) => {
 	return (
 		<Link
-			className="text-slate-500 hover:text-white p-2"
+			className="p-2 hover:text-white"
 			href={props.href}
+			onClick={() => props.setIsOpen(!props.isOpen)}
 			{...props.other}
 		>
 			{props.text}
@@ -60,15 +72,36 @@ const NavBarLink = (props: { text: string; href: string; other?: any[] }) => {
 const Navbar = () => {
 	const [isOpen, setIsOpen] = useState(false);
 	return (
-		<nav className="sticky top-0 w-full bg-slate-800 flex flew-wrap flex-row items-center justify-between px-1 ">
-			<Link className="py-2 px-1" href="/">
-				<span className="text-2xl self-center whitespace-nowrap text-slate-500 hover:text-white">
-					Quollab
-				</span>
-			</Link>
+		<nav className="sticky top-0 w-full z-50 bg-slate-800 flex flew-wrap flex-row items-center justify-between px-1 text-slate-500">
+			<div className="flex flex-row">
+				<Link
+					className="py-2 px-1 hover:text-white"
+					href="/"
+					onClick={() => setIsOpen(!isOpen)}
+				>
+					<span className="text-2xl self-center whitespace-nowrap">
+						Quollab
+					</span>
+				</Link>
+				<div className="hidden sm:flex items-center sm:flex-row sm:space-x-2">
+					{BUTTONS.map((obj) => (
+						<NavBarLink
+							isOpen={isOpen}
+							setIsOpen={setIsOpen}
+							{...obj}
+							key={obj.text}
+						/>
+					))}
+				</div>
+			</div>
 			<div className="hidden sm:flex items-center sm:flex-row sm:space-x-2">
-				{BUTTONS.map((obj) => (
-					<NavBarLink {...obj} key={obj.text} />
+				{SIGNUP_BUTTONS.map((obj) => (
+					<NavBarLink
+						isOpen={isOpen}
+						setIsOpen={setIsOpen}
+						{...obj}
+						key={obj.text}
+					/>
 				))}
 			</div>
 			<div className="sm:hidden">
@@ -82,9 +115,22 @@ const Navbar = () => {
 					leaveTo="transform scale-95 opacity-0"
 					show={isOpen}
 				>
-					<div className="absolute flex flex-col right-0 mt-1 origin-top-right rounded-md bg-slate-800 px-5">
+					<div className="absolute flex flex-col right-0 mt-1 origin-top-right rounded-md bg-slate-800 px-5 w-screen">
 						{BUTTONS.map((obj) => (
-							<NavBarLink {...obj} key={obj.text} />
+							<NavBarLink
+								isOpen={isOpen}
+								setIsOpen={setIsOpen}
+								{...obj}
+								key={obj.text}
+							/>
+						))}
+						{SIGNUP_BUTTONS.map((obj) => (
+							<NavBarLink
+								isOpen={isOpen}
+								setIsOpen={setIsOpen}
+								{...obj}
+								key={obj.text}
+							/>
 						))}
 					</div>
 				</Transition>
