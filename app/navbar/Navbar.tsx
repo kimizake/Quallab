@@ -5,7 +5,6 @@ import Link from "next/link";
 import { Dispatch, SetStateAction, useState } from "react";
 
 const BUTTONS = [
-	{ text: "Home", href: "/" },
 	{ text: "Submit", href: "/submit" },
 	{ text: "About", href: "/about" },
 ];
@@ -63,7 +62,9 @@ const Navbar = () => {
 	return (
 		<nav className="sticky top-0 w-full bg-slate-800 flex flew-wrap flex-row items-center justify-between px-1 ">
 			<Link className="py-2 px-1" href="/">
-				<span className="text-2xl self-center whitespace-nowrap">Quollab</span>
+				<span className="text-2xl self-center whitespace-nowrap text-slate-500 hover:text-white">
+					Quollab
+				</span>
 			</Link>
 			<div className="hidden sm:flex items-center sm:flex-row sm:space-x-2">
 				{BUTTONS.map((obj) => (
