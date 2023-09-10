@@ -64,7 +64,7 @@ const NavBarLink = (props: {
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <nav className="sticky top-0 w-full z-50 bg-slate-800 flex flew-wrap flex-row items-center justify-between px-1 text-slate-500">
+    <nav className="sticky top-0 w-full z-50 bg-dark-blue flex flew-wrap flex-row items-center justify-between p-3">
       <div className="flex flex-row">
         <Link
           className="py-2 px-1 hover:text-white"
