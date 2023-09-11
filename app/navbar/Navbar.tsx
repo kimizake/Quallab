@@ -1,9 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { Dispatch, SetStateAction } from "react";
-import logo from "../../assets/Quallab Grey Logo.png";
+import { righteous } from "../styles/fonts";
 
 const BUTTONS = [{ text: "About Us", href: "/about" }];
 
@@ -53,13 +52,16 @@ const NavBarLink = (props: { text: string; href: string; other?: any[] }) => {
 
 const Navbar = () => {
 	return (
-		<nav className="sticky top-0 w-full z-50 bg-dark-blue flex flew-wrap flex-row items-center justify-between px-5">
-			<Link className="h-16 items-center hover:text-white" href="/">
-				<Image
+		<nav className="sticky top-0 w-full z-50 bg-dark-blue flex flew-wrap flex-row items-center justify-between px-5 py-3">
+			<Link className="flex items-center hover:text-white" href="/">
+				{/* <Image
 					src={logo}
 					alt="Quallab"
 					className="object-contain object-left w-full h-full"
-				/>
+				/> */}
+				<span className={`${righteous.className} text-2xl text-off-white`}>
+					Quallab
+				</span>
 			</Link>
 			<div className="items-center flex flex-row sm:space-x-2">
 				{BUTTONS.map((obj) => (

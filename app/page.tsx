@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Button } from "./components/Button";
 import logo from "../assets/Quallab Grey Logo.png";
+import { righteous } from "./styles/fonts";
 
 export default function Home() {
 	const BUTTONS = [
@@ -16,9 +17,11 @@ export default function Home() {
 		},
 	];
 	return (
-		<main className="flex flex-col py-5 px-5 gap-6">
+		<main className="flex flex-col py-5 px-5 gap-10">
 			<div className="inline-flex justify-center">
-				<Image src={logo} alt={"Logo"} />
+				<span className={`${righteous.className} text-7xl md:text-9xl`}>
+					Quallab
+				</span>
 			</div>
 			<div className="text-center">
 				Connecting students and researchers to foster meaningful collaboration
