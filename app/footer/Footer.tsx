@@ -4,11 +4,11 @@ const Footer = () => {
   return (
     <footer className="flex flex-col w-full bg-dark-blue p-5 text-center justify-center space-y-5">
       <div className="flex flex-row space-x-2 justify-center">
-        <Link className="hover:text-white" href="/find-projects">
-          Find Research
-        </Link>
         <Link className="hover:text-white" href="/find-collaborators">
           Find Collaborators
+        </Link>
+        <Link className="hover:text-white" href="/find-projects">
+          Find Research
         </Link>
         <Link className="hover:text-white" href="/about">
           About Us
