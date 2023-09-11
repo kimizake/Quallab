@@ -24,8 +24,11 @@ export default function Home() {
 				Connecting students and researchers to foster meaningful collaboration
 			</div>
 			<div className="grid md:grid-cols-2 md:px-10 gap-6 justify-items-center justify-center">
-				{BUTTONS.map((button) => (
-					<div className="flex flex-col w-full text-center space-y-2 items-center">
+				{BUTTONS.map((button, idx) => (
+					<div
+						className="flex flex-col w-full text-center space-y-2 items-center"
+						key={idx}
+					>
 						<Button label={button.label} href={button.href} />
 						<div>{button.text}</div>
 					</div>
