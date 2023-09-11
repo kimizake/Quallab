@@ -7,6 +7,7 @@ import { TextArea } from "../components/TextArea";
 
 const FindCollaborators = () => {
 	const [otherSpecialty, toggleOtherSpecialty] = useState(false);
+	const [accessRequirements, setAccessRequirements] = useState(false);
 	const [experienceDetails, setExperienceDetails] = useState(false);
 
 	const JobDropdownOptions = ["Medical student", "Junior doctor"];
@@ -25,45 +26,6 @@ const FindCollaborators = () => {
 		"Psyciatry",
 		"Public health",
 		"Surgery",
-	];
-	const RadioInputs = [
-		{
-			heading: "Availability",
-			radioName: "availability-radio",
-			buttons: [{ label: "In Person" }, { label: "Online" }],
-			required: true,
-		},
-		{
-			heading: "Access Requirements",
-			radioName: "requirements-radio",
-			buttons: [{ label: "Yes" }, { label: "No" }],
-			required: true,
-		},
-		{
-			heading: "Experience Level",
-			radioName: "experience-radio",
-			buttons: [
-				{
-					label: "Beginner (No Research Experience)",
-					onInput: () => {
-						setExperienceDetails(false);
-					},
-				},
-				{
-					label: "Intermediate (Some Research Experience",
-					onInput: () => {
-						setExperienceDetails(true);
-					},
-				},
-				{
-					label: "Advanced (looking for specific skills)",
-					onInput: () => {
-						setExperienceDetails(true);
-					},
-				},
-			],
-			required: true,
-		},
 	];
 	return (
 		<div className="flex flex-col gap-5 w-4/5">
@@ -150,9 +112,63 @@ const FindCollaborators = () => {
 					required={true}
 				/>
 				<h1 className="p-0">Requirements for researchers</h1>
-				{RadioInputs.map((input, idx) => (
-					<RadioPanel {...input} key={idx} />
-				))}
+				<RadioPanel
+					heading="Availability"
+					radioName="availability-radio"
+					buttons={[{ label: "In Person" }, { label: "Online" }]}
+					required
+				/>
+				<RadioPanel
+					heading="Access Requirements"
+					radioName="requirements-radio"
+					buttons={[
+						{
+							label: "Yes",
+							onInput: () => {
+								setAccessRequirements(true);
+							},
+						},
+						{
+							label: "No",
+							onInput: () => {
+								setAccessRequirements(false);
+							},
+						},
+					]}
+					required
+				/>
+				<div className={accessRequirements ? "" : "hidden"}>
+					<TextArea
+						label="Access requirements (detail)"
+						placeholder=""
+						required={accessRequirements}
+					/>
+				</div>
+				<RadioPanel
+					heading="Experience Level"
+					radioName="experience-radio"
+					buttons={[
+						{
+							label: "Beginner (No Research Experience)",
+							onInput: () => {
+								setExperienceDetails(false);
+							},
+						},
+						{
+							label: "Intermediate (Some Research Experience",
+							onInput: () => {
+								setExperienceDetails(true);
+							},
+						},
+						{
+							label: "Advanced (looking for specific skills)",
+							onInput: () => {
+								setExperienceDetails(true);
+							},
+						},
+					]}
+					required
+				/>
 				<div className={experienceDetails ? "" : "hidden"}>
 					<Input
 						label="Skill required (detail)"
