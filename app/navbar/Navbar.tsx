@@ -1,10 +1,9 @@
 "use client";
 
-import { Transition } from "@headlessui/react";
-import Link from "next/link";
-import { Dispatch, SetStateAction, useState } from "react";
-import logo from "../../assets/Quallab Grey Logo.png";
 import Image from "next/image";
+import Link from "next/link";
+import { Dispatch, SetStateAction } from "react";
+import logo from "../../assets/Quallab Grey Logo.png";
 
 const BUTTONS = [{ text: "About Us", href: "/about" }];
 
@@ -44,75 +43,28 @@ const Hamburger = (props: {
 	);
 };
 
-const NavBarLink = (props: {
-	text: string;
-	href: string;
-	isOpen: boolean;
-	setIsOpen: Dispatch<SetStateAction<boolean>>;
-	other?: any[];
-}) => {
+const NavBarLink = (props: { text: string; href: string; other?: any[] }) => {
 	return (
-		<Link
-			className="p-2 hover:text-white"
-			href={props.href}
-			onClick={() => props.setIsOpen(!props.isOpen)}
-			{...props.other}
-		>
+		<Link className="hover:text-white" href={props.href} {...props.other}>
 			{props.text}
 		</Link>
 	);
 };
 
 const Navbar = () => {
-	const [isOpen, setIsOpen] = useState(false);
 	return (
-		<nav className="sticky top-0 w-full z-50 bg-dark-blue flex flew-wrap flex-row items-center justify-between p-3">
-			<div className="flex flex-row h-1/10">
-				<Link
-					className="py-2 px-1 hover:text-white"
-					href="/"
-					onClick={() => setIsOpen(!isOpen)}
-				>
-					<Image
-						src={logo}
-						alt="Quallab"
-						fill
-						className="object-contain object-left w-auto"
-					/>
-				</Link>
-			</div>
-			<div className="hidden sm:flex items-center sm:flex-row sm:space-x-2">
+		<nav className="sticky top-0 w-full z-50 bg-dark-blue flex flew-wrap flex-row items-center justify-between px-5">
+			<Link className="h-16 items-center hover:text-white" href="/">
+				<Image
+					src={logo}
+					alt="Quallab"
+					className="object-contain object-left w-full h-full"
+				/>
+			</Link>
+			<div className="items-center flex flex-row sm:space-x-2">
 				{BUTTONS.map((obj) => (
-					<NavBarLink
-						isOpen={isOpen}
-						setIsOpen={setIsOpen}
-						{...obj}
-						key={obj.text}
-					/>
+					<NavBarLink {...obj} key={obj.text} />
 				))}
-			</div>
-			<div className="sm:hidden">
-				<Hamburger isOpen={isOpen} setIsOpen={setIsOpen} />
-				<Transition
-					enter="transition duration-100 ease-out"
-					enterFrom="transform scale-95 opacity-0"
-					enterTo="transform scale-100 opacity-100"
-					leave="transition duration-75 ease-out"
-					leaveFrom="transform scale-100 opacity-100"
-					leaveTo="transform scale-95 opacity-0"
-					show={isOpen}
-				>
-					<div className="absolute flex flex-col right-0 mt-1 origin-top-right rounded-md bg-slate-800 px-5 w-screen">
-						{BUTTONS.map((obj) => (
-							<NavBarLink
-								isOpen={isOpen}
-								setIsOpen={setIsOpen}
-								{...obj}
-								key={obj.text}
-							/>
-						))}
-					</div>
-				</Transition>
 			</div>
 		</nav>
 	);
