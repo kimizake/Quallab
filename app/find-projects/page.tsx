@@ -24,7 +24,9 @@ const FindProjects = () => {
 	const [otherSpecialty, toggleOtherSpecialty] = useState(false);
 	return (
 		<div className="flex flex-col gap-5 w-4/5">
-			<h1 className="text-center">Find Research</h1>
+			<h1 className="text-center">
+				<b>Find Research</b>
+			</h1>
 			<form className="grid gap-5">
 				<div className="grid md:grid-cols-2 gap-5 md:gap-10">
 					<Input

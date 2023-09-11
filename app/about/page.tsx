@@ -2,7 +2,9 @@ const About = () => {
 	return (
 		<div className="flex flex-col gap-5 py-5 px-10">
 			<div className="flex flex-col gap-5">
-				<h1>About Us</h1>
+				<h1>
+					<b>About Us</b>
+				</h1>
 				<p className="px-5">
 					<b>Quallab</b> is a collaboration platform designed exclusively for
 					aspiring researchers
@@ -14,7 +16,9 @@ const About = () => {
 				</p>
 			</div>
 			<div className="flex flex-col gap-5">
-				<h1>Our Vision</h1>
+				<h1>
+					<b>Our Vision</b>
+				</h1>
 				<p className="px-5">
 					We envision a future where every student has the opportunity to
 					actively engage in groundbreaking research, gain valuable hands-on
