@@ -85,7 +85,27 @@ const FindCollaborators = () => {
         />
         <Input
           label="Description of work (preliminary work, writing, screening)"
-          type="text"
+          type="textarea"
+          placeholder=""
+          required={true}
+        />
+        <Input
+          label="Time requirement (estimated number of hours of work)"
+          type="number"
+          min={0}
+          placeholder=""
+          required={true}
+        />
+        <Input
+          label="Research start date requirement"
+          type="date"
+          placeholder=""
+          required={true}
+        />
+        <Input
+          label="How many collaborators are you looking for"
+          type="number"
+          min={0}
           placeholder=""
           required={true}
         />

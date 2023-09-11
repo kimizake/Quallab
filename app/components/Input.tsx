@@ -4,6 +4,7 @@ export const Input = (props: {
   placeholder?: string;
   pattern?: string;
   required?: boolean;
+  min?: number;
 }) => {
   return (
     <div className="relative z-0 w-full mb-6 group">
