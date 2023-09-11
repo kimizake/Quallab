@@ -18,12 +18,7 @@ export default function Home() {
 	return (
 		<main className="flex flex-col py-5 px-5 gap-10">
 			<div className="inline-flex justify-center">
-				<Image
-					src={logo}
-					alt={"Logo"}
-					width={logo.default.width}
-					height={logo.default.height}
-				/>
+				<Image src={logo} alt={"Logo"} />
 			</div>
 			<div className="text-center">
 				Connecting students and researchers to foster meaningful collaboration
