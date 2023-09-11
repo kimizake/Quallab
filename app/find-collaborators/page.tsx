@@ -23,8 +23,8 @@ const FindCollaborators = () => {
   ];
   const [otherSpecialty, toggleOtherSpecialty] = useState(false);
   return (
-    <div className="flex flex-col gap-5">
-      <h1 className="text-center">Find Research</h1>
+    <div className="flex flex-col gap-5 w-4/5">
+      <h1 className="text-center">Find Collaborators</h1>
       <form className="py-6">
         <div className="grid md:grid-cols-2 md:gap-10">
           <Input
@@ -65,6 +65,30 @@ const FindCollaborators = () => {
             required={otherSpecialty}
           />
         </div>
+        <Input
+          label="Title of Project"
+          type="text"
+          placeholder=""
+          required={true}
+        />
+        <Input
+          label="Brief description of project"
+          type="text"
+          placeholder=""
+          required={true}
+        />
+        <Input
+          label="Research style (e.g. literature review, audit)"
+          type="text"
+          placeholder=""
+          required={true}
+        />
+        <Input
+          label="Description of work (preliminary work, writing, screening)"
+          type="text"
+          placeholder=""
+          required={true}
+        />
         <button
           type="submit"
           className="bg-off-white text-navy text-center px-5 py-2 rounded-md hover:bg-dark-blue hover:text-off-white w-full"
