@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Input } from "../components/Input";
 import { RadioPanel } from "../components/RadioPanel";
 import { Select } from "../components/Select";
+import { TextArea } from "../components/TextArea";
 
 const FindCollaborators = () => {
 	const [otherSpecialty, toggleOtherSpecialty] = useState(false);
@@ -67,8 +68,8 @@ const FindCollaborators = () => {
 	return (
 		<div className="flex flex-col gap-5 w-4/5">
 			<h1 className="text-center">Find Collaborators</h1>
-			<form className="py-6">
-				<div className="grid md:grid-cols-2 md:gap-10">
+			<form className="grid gap-5">
+				<div className="grid md:grid-cols-2 gap-5 md:gap-10">
 					<Input
 						label="First Name"
 						type="text"
@@ -125,14 +126,9 @@ const FindCollaborators = () => {
 					placeholder=""
 					required={true}
 				/>
+				<TextArea label="Description of work" placeholder="" required={true} />
 				<Input
-					label="Description of work (preliminary work, writing, screening)"
-					type="textarea"
-					placeholder=""
-					required={true}
-				/>
-				<Input
-					label="Time requirement (estimated number of hours of work)"
+					label="Time requirement (estimated hours)"
 					type="number"
 					min={0}
 					placeholder=""
@@ -151,7 +147,7 @@ const FindCollaborators = () => {
 					placeholder=""
 					required={true}
 				/>
-				<h1>Requirements for researchers</h1>
+				<h1 className="p-0">Requirements for researchers</h1>
 				{RadioInputs.map((input, idx) => (
 					<RadioPanel {...input} key={idx} />
 				))}

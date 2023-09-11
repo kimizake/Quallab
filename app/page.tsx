@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { Button } from "./components/Button";
-import * as logo from "../assets/Quallab Grey Logo.png";
+import logo from "../assets/Quallab Grey Logo.png";
 
 export default function Home() {
 	const BUTTONS = [
@@ -16,7 +16,7 @@ export default function Home() {
 		},
 	];
 	return (
-		<main className="flex flex-col py-5 px-5 gap-10">
+		<main className="flex flex-col py-5 px-5 gap-6">
 			<div className="inline-flex justify-center">
 				<Image src={logo} alt={"Logo"} />
 			</div>
@@ -27,7 +27,7 @@ export default function Home() {
 				{BUTTONS.map((button) => (
 					<div className="flex flex-col w-full text-center space-y-2 items-center">
 						<Button label={button.label} href={button.href} />
-						<text>{button.text}</text>
+						<div>{button.text}</div>
 					</div>
 				))}
 			</div>

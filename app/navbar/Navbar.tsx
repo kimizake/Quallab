@@ -3,7 +3,7 @@
 import { Transition } from "@headlessui/react";
 import Link from "next/link";
 import { Dispatch, SetStateAction, useState } from "react";
-import * as logo from "../../assets/Quallab Grey Logo.png";
+import logo from "../../assets/Quallab Grey Logo.png";
 import Image from "next/image";
 
 const BUTTONS = [{ text: "About Us", href: "/about" }];
