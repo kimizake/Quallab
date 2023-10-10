@@ -1,6 +1,7 @@
 export const Input = (props: {
 	label: string;
 	type: string;
+	name: string;
 	placeholder?: string;
 	pattern?: string;
 	required?: boolean;

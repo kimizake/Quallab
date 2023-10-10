@@ -1,9 +1,33 @@
 "use client";
-import { useState } from "react";
+import { ChangeEvent, FormEvent, useReducer, useState } from "react";
 import { Input } from "../components/Input";
 import { RadioPanel } from "../components/RadioPanel";
 import { Select } from "../components/Select";
 import { TextArea } from "../components/TextArea";
+import { CollaboratorForm } from "../types/formDataType";
+
+const handleSubmit = async (ev: FormEvent, formData: CollaboratorForm) => {
+	ev.preventDefault();
+	const res = await fetch("/api/collaboratorUpload", {
+		method: "POST",
+		headers: {
+			Accept: "application/json",
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify(formData),
+	});
+	await res.json();
+};
+
+const formReducer = (
+	state: CollaboratorForm,
+	event: ChangeEvent<HTMLFormElement>
+) => {
+	return {
+		...state,
+		[event.target.name]: event.target.value,
+	};
+};
 
 const FindCollaborators = () => {
 	const [otherSpecialty, toggleOtherSpecialty] = useState(false);
@@ -27,36 +51,71 @@ const FindCollaborators = () => {
 		"Public health",
 		"Surgery",
 	];
+
+	const [formData, setFormData] = useReducer(formReducer, {
+		accessRequirements: "",
+		availability: "Online",
+		descriptionOfWork: "",
+		email: "",
+		experienceLevel: "",
+		firstName: "",
+		interest: "",
+		jobTitle: "",
+		lastName: "",
+		numberOfCollaborators: 0,
+		projectDescription: "",
+		projectTitle: "",
+		researchStyle: "",
+		startDate: "",
+		timeRequirement: 0,
+	});
+
 	return (
 		<div className="flex flex-col gap-5 w-4/5">
 			<h1 className="text-center">
 				<b>Find Collaborators</b>
 			</h1>
-			<form className="grid gap-5">
+			<form
+				className="grid gap-5"
+				onSubmit={(e) => {
+					handleSubmit(e, { ...formData });
+				}}
+				onChange={setFormData}
+			>
 				<div className="grid md:grid-cols-2 gap-5 md:gap-10">
 					<Input
 						label="First Name"
 						type="text"
+						name="firstName"
 						placeholder=""
 						required={true}
 					/>
-					<Input label="Last Name" type="text" placeholder="" required={true} />
+					<Input
+						label="Last Name"
+						type="text"
+						name="lastName"
+						placeholder=""
+						required={true}
+					/>
 				</div>
 				<Input
 					label="Insutition Email"
-					type="text"
+					type="email"
+					name="email"
 					placeholder=""
-					pattern="[A-za-z]+@[A-Za-z]+.ac.uk"
+					pattern="[A-za-z]+@ucl.ac.uk"
 					required={true}
 				/>
 				<Select
 					label="Job Title"
+					name="jobTitle"
 					options={JobDropdownOptions}
 					placeholder=""
 					required={true}
 				/>
 				<Select
 					label="Specialty of interest"
+					name="interest"
 					options={SpecialtyDropdownOptions}
 					onChange={(e) => {
 						toggleOtherSpecialty(e.target.value === "Other");
@@ -67,6 +126,7 @@ const FindCollaborators = () => {
 				<div className={otherSpecialty ? "" : "hidden"}>
 					<Input
 						label="Specialty of Interest"
+						name="interest"
 						type="text"
 						placeholder=""
 						required={otherSpecialty}
@@ -74,25 +134,34 @@ const FindCollaborators = () => {
 				</div>
 				<Input
 					label="Title of Project"
+					name="projectTitle"
 					type="text"
 					placeholder=""
 					required={true}
 				/>
 				<Input
 					label="Brief description of project"
+					name="projectDescription"
 					type="text"
 					placeholder=""
 					required={true}
 				/>
 				<Input
 					label="Research style (e.g. literature review, audit)"
+					name="researchStyle"
 					type="text"
 					placeholder=""
 					required={true}
 				/>
-				<TextArea label="Description of work" placeholder="" required={true} />
+				<TextArea
+					label="Description of work"
+					name="descriptionOfWork"
+					placeholder=""
+					required={true}
+				/>
 				<Input
 					label="Time requirement (estimated hours)"
+					name="timeRequirement"
 					type="number"
 					min={0}
 					placeholder=""
@@ -100,12 +169,14 @@ const FindCollaborators = () => {
 				/>
 				<Input
 					label="Research start date requirement"
+					name="startDate"
 					type="date"
 					placeholder=""
 					required={true}
 				/>
 				<Input
 					label="How many collaborators are you looking for"
+					name="numberOfCollaborators"
 					type="number"
 					min={0}
 					placeholder=""
@@ -114,13 +185,13 @@ const FindCollaborators = () => {
 				<h1 className="p-0">Requirements for researchers</h1>
 				<RadioPanel
 					heading="Availability"
-					radioName="availability-radio"
+					name="availability"
 					buttons={[{ label: "In Person" }, { label: "Online" }]}
 					required
 				/>
 				<RadioPanel
 					heading="Access Requirements"
-					radioName="requirements-radio"
+					name="accessRequirements"
 					buttons={[
 						{
 							label: "Yes",
@@ -140,13 +211,14 @@ const FindCollaborators = () => {
 				<div className={accessRequirements ? "" : "hidden"}>
 					<TextArea
 						label="Access requirements (detail)"
+						name="accessRequirements"
 						placeholder=""
 						required={accessRequirements}
 					/>
 				</div>
 				<RadioPanel
 					heading="Experience Level"
-					radioName="experience-radio"
+					name="experienceLevel"
 					buttons={[
 						{
 							label: "Beginner (No Research Experience)",
@@ -172,6 +244,7 @@ const FindCollaborators = () => {
 				<div className={experienceDetails ? "" : "hidden"}>
 					<Input
 						label="Skill required (detail)"
+						name="experienceLevel"
 						type="text"
 						placeholder=""
 						required={experienceDetails}

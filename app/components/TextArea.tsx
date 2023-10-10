@@ -1,5 +1,6 @@
 export const TextArea = (props: {
 	label: string;
+	name: string;
 	placeholder?: string;
 	required?: boolean;
 }) => {

@@ -2,6 +2,7 @@ import { ChangeEventHandler } from "react";
 
 export const Select = (props: {
 	label: string;
+	name: string;
 	options: string[];
 	onChange?: ChangeEventHandler<HTMLSelectElement>;
 	placeholder?: string;
