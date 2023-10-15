@@ -28,7 +28,7 @@ const Footer = () => {
 					</svg>
 				</Link>
 			</div>
-			<div className="text-sm text-slate-500">© Copyright Quallab</div>
+			<div className="text-sm text-slate-500">© 2023 Quallab</div>
 		</footer>
 	);
 };
