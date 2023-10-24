@@ -54,6 +54,7 @@ const FormBody = (props: { enabled: boolean }) => {
 					label="First Name"
 					type="text"
 					name="firstName"
+					pattern="[A-Za-z]+"
 					placeholder=""
 					required={true}
 				/>
@@ -61,6 +62,7 @@ const FormBody = (props: { enabled: boolean }) => {
 					label="Last Name"
 					type="text"
 					name="lastName"
+					pattern="[A-Za-z]+"
 					placeholder=""
 					required={true}
 				/>
@@ -70,7 +72,7 @@ const FormBody = (props: { enabled: boolean }) => {
 				type="text"
 				name="email"
 				placeholder=""
-				pattern="[A-za-z]+@[A-Za-z]+.ac.uk"
+				pattern="[A-za-z0-9]+@ucl.ac.uk"
 				required={true}
 			/>
 			<Select
@@ -99,9 +101,12 @@ const FormBody = (props: { enabled: boolean }) => {
 					required={otherSpecialty}
 				/>
 			</div>
+			<div className="hidden group-invalid:block text-xs text-red-500 text-center">
+				<p>Please fill out all form inputs.</p>
+			</div>
 			<button
 				type="submit"
-				className="bg-off-white text-navy text-center px-5 py-2 rounded-md hover:bg-dark-blue hover:text-off-white w-full disabled:bg-slate-800 disabled:text-slate-600"
+				className="bg-off-white text-navy text-center px-5 py-2 rounded-md hover:bg-dark-blue hover:text-off-white w-full disabled:bg-slate-800 disabled:text-slate-600  group-invalid:pointer-events-none group-invalid:opacity-30"
 				disabled={!props.enabled}
 			>
 				Submit
@@ -128,7 +133,7 @@ const FindProjects = () => {
 				<b>Find Research</b>
 			</h1>
 			<form
-				className="grid gap-5"
+				className="grid gap-5 group"
 				onSubmit={async (e) => {
 					setEnabled(false);
 					await handleSubmit(e, { ...formData });
