@@ -6,10 +6,11 @@ import { Select } from "../components/Select";
 import { TextArea } from "../components/TextArea";
 import { CollaboratorForm } from "../types/formDataType";
 import { DateInput } from "../components/DateField";
+import { useRouter } from "next/navigation";
 
 const handleSubmit = async (ev: FormEvent, formData: CollaboratorForm) => {
 	ev.preventDefault();
-	const res = await fetch("/api/collaboratorUpload", {
+	await fetch("/api/collaboratorUpload", {
 		method: "POST",
 		headers: {
 			Accept: "application/json",
@@ -17,13 +18,12 @@ const handleSubmit = async (ev: FormEvent, formData: CollaboratorForm) => {
 		},
 		body: JSON.stringify(formData),
 	});
-	await res.json();
 };
 
 const formReducer = (
 	state: CollaboratorForm,
 	event: ChangeEvent<HTMLFormElement>
-) => {
+): CollaboratorForm => {
 	return {
 		...state,
 		[event.target.name]: event.target.value,
@@ -260,6 +260,8 @@ const FindCollaborators = () => {
 	});
 	const [enabled, setEnabled] = useState(true);
 
+	const { push } = useRouter();
+
 	return (
 		<div className="flex flex-col gap-5 w-4/5">
 			<h1 className="text-center">
@@ -270,7 +272,7 @@ const FindCollaborators = () => {
 				onSubmit={async (e) => {
 					setEnabled(false);
 					handleSubmit(e, { ...formData });
-					setEnabled(true);
+					push("/thankYou");
 				}}
 				onChange={setFormData}
 			>

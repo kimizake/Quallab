@@ -3,10 +3,11 @@ import { ChangeEvent, FormEvent, Fragment, useReducer, useState } from "react";
 import { Input } from "../components/Input";
 import { Select } from "../components/Select";
 import { ProjectForm } from "../types/formDataType";
+import { useRouter } from "next/navigation";
 
 const handleSubmit = async (ev: FormEvent, formData: ProjectForm) => {
 	ev.preventDefault();
-	const res = await fetch("/api/projectUpload", {
+	await fetch("/api/projectUpload", {
 		method: "POST",
 		headers: {
 			Accept: "application/json",
@@ -14,7 +15,6 @@ const handleSubmit = async (ev: FormEvent, formData: ProjectForm) => {
 		},
 		body: JSON.stringify(formData),
 	});
-	await res.json();
 };
 
 const formReducer = (
@@ -127,6 +127,8 @@ const FindProjects = () => {
 		lastName: "",
 	});
 	const [enabled, setEnabled] = useState(true);
+
+	const { push } = useRouter();
 	return (
 		<div className="flex flex-col gap-5 w-4/5">
 			<h1 className="text-center">
@@ -136,8 +138,8 @@ const FindProjects = () => {
 				className="grid gap-5 group"
 				onSubmit={async (e) => {
 					setEnabled(false);
-					await handleSubmit(e, { ...formData });
-					setEnabled(true);
+					handleSubmit(e, { ...formData });
+					push("/thankYou");
 				}}
 				onChange={setFormData}
 			>
