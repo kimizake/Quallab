@@ -5,10 +5,12 @@ import { RadioPanel } from "../components/RadioPanel";
 import { Select } from "../components/Select";
 import { TextArea } from "../components/TextArea";
 import { CollaboratorForm } from "../types/formDataType";
+import { DateInput } from "../components/DateField";
+import { useRouter } from "next/navigation";
 
 const handleSubmit = async (ev: FormEvent, formData: CollaboratorForm) => {
 	ev.preventDefault();
-	const res = await fetch("/api/collaboratorUpload", {
+	await fetch("/api/collaboratorUpload", {
 		method: "POST",
 		headers: {
 			Accept: "application/json",
@@ -16,13 +18,12 @@ const handleSubmit = async (ev: FormEvent, formData: CollaboratorForm) => {
 		},
 		body: JSON.stringify(formData),
 	});
-	await res.json();
 };
 
 const formReducer = (
 	state: CollaboratorForm,
 	event: ChangeEvent<HTMLFormElement>
-) => {
+): CollaboratorForm => {
 	return {
 		...state,
 		[event.target.name]: event.target.value,
@@ -51,6 +52,7 @@ const FormBody = (props: { enabled: boolean }) => {
 		"Public health",
 		"Surgery",
 	];
+
 	return (
 		<Fragment>
 			<div className="grid md:grid-cols-2 gap-5 md:gap-10">
@@ -58,6 +60,7 @@ const FormBody = (props: { enabled: boolean }) => {
 					label="First Name"
 					type="text"
 					name="firstName"
+					pattern="[A-Za-z]+"
 					placeholder=""
 					required={true}
 				/>
@@ -65,6 +68,7 @@ const FormBody = (props: { enabled: boolean }) => {
 					label="Last Name"
 					type="text"
 					name="lastName"
+					pattern="[A-Za-z]+"
 					placeholder=""
 					required={true}
 				/>
@@ -138,12 +142,13 @@ const FormBody = (props: { enabled: boolean }) => {
 				placeholder=""
 				required={true}
 			/>
-			<Input
+			<DateInput
 				label="Research start date requirement"
 				name="startDate"
 				type="date"
 				placeholder=""
 				required={true}
+				min={new Date().toISOString().split("T")[0]}
 			/>
 			<Input
 				label="How many collaborators are you looking for"
@@ -221,9 +226,12 @@ const FormBody = (props: { enabled: boolean }) => {
 					required={experienceDetails}
 				/>
 			</div>
+			<div className="hidden group-invalid:block text-xs text-red-500 text-center">
+				<p>Please fill out all form inputs.</p>
+			</div>
 			<button
 				type="submit"
-				className="bg-off-white text-navy text-center px-5 py-2 rounded-md hover:bg-dark-blue hover:text-off-white w-full disabled:bg-slate-800 bg:text-slate-600"
+				className="bg-off-white text-navy text-center px-5 py-2 rounded-md hover:bg-dark-blue hover:text-off-white w-full disabled:bg-slate-800 bg:text-slate-600 group-invalid:pointer-events-none group-invalid:opacity-30"
 				disabled={!props.enabled}
 			>
 				Submit
@@ -252,17 +260,19 @@ const FindCollaborators = () => {
 	});
 	const [enabled, setEnabled] = useState(true);
 
+	const { push } = useRouter();
+
 	return (
 		<div className="flex flex-col gap-5 w-4/5">
 			<h1 className="text-center">
 				<b>Find Collaborators</b>
 			</h1>
 			<form
-				className="grid gap-5"
+				className="grid gap-5 group"
 				onSubmit={async (e) => {
 					setEnabled(false);
 					handleSubmit(e, { ...formData });
-					setEnabled(true);
+					push("/thankYou");
 				}}
 				onChange={setFormData}
 			>

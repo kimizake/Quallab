@@ -14,7 +14,7 @@ const POST = async (req: Request) => {
 			requestBody: {
 				values: [
 					[
-						new Date().toISOString(),
+						new Date().toISOString().split("T")[0],
 						body.firstName,
 						body.lastName,
 						"UCL",
