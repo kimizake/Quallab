@@ -62,7 +62,7 @@ const FormBody = (props: { enabled: boolean }) => {
 					label="Last Name"
 					type="text"
 					name="lastName"
-					pattern="[A-Za-z]+"
+					pattern="[A-Za-z]+((\s|-)?[A-Za-z]+)?"
 					placeholder=""
 					required={true}
 				/>
