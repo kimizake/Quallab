@@ -28,7 +28,7 @@ const formReducer = (
 };
 
 const FormBody = (props: { enabled: boolean }) => {
-	const JobDropdownOptions = ["Medical student", "Junior doctor"];
+	const JobDropdownOptions = ["Medical student", "Doctor"];
 	const SpecialtyDropdownOptions = [
 		"Anaesthetics",
 		"Oncology",
@@ -51,7 +51,7 @@ const FormBody = (props: { enabled: boolean }) => {
 		<Fragment>
 			<div className="grid md:grid-cols-2 gap-5 md:gap-10">
 				<Input
-					label="First Name"
+					label="First name"
 					type="text"
 					name="firstName"
 					pattern="[A-Za-z]+"
@@ -59,7 +59,7 @@ const FormBody = (props: { enabled: boolean }) => {
 					required={true}
 				/>
 				<Input
-					label="Last Name"
+					label="Last name"
 					type="text"
 					name="lastName"
 					pattern="[A-Za-z]+((\s|-)?[A-Za-z]+)?"
@@ -68,7 +68,7 @@ const FormBody = (props: { enabled: boolean }) => {
 				/>
 			</div>
 			<Input
-				label="Insutition Email"
+				label="Insutition email"
 				type="text"
 				name="email"
 				placeholder=""
@@ -76,7 +76,7 @@ const FormBody = (props: { enabled: boolean }) => {
 				required={true}
 			/>
 			<Select
-				label="Job Title"
+				label="Job title"
 				name="jobTitle"
 				options={JobDropdownOptions}
 				placeholder=""
@@ -94,7 +94,7 @@ const FormBody = (props: { enabled: boolean }) => {
 			/>
 			<div className={otherSpecialty ? "" : "hidden"}>
 				<Input
-					label="Specialty of Interest"
+					label="Specialty of interest"
 					name="interest"
 					type="text"
 					placeholder=""
