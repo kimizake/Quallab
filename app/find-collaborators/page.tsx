@@ -78,7 +78,7 @@ const FormBody = (props: { enabled: boolean }) => {
 				type="email"
 				name="email"
 				placeholder=""
-				pattern="[A-za-z0-9]+@ucl.ac.uk"
+				pattern="[A-Za-z]+\.[A-Za-z]+\.[0-9]+@ucl.ac.uk"
 				required={true}
 			/>
 			<Select
