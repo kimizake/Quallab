@@ -31,7 +31,6 @@ const formReducer = (
 };
 
 const FormBody = (props: { enabled: boolean }) => {
-	const [otherSpecialty, toggleOtherSpecialty] = useState(false);
 	const [accessRequirements, setAccessRequirements] = useState(false);
 	const [experienceDetails, setExperienceDetails] = useState(false);
 
@@ -45,12 +44,12 @@ const FormBody = (props: { enabled: boolean }) => {
 		"GP",
 		"Intensive care medicine",
 		"Obstetrics and gynaecology",
-		"Occupational medicine",
 		"Opthalmology",
 		"Paediatrics",
-		"Psyciatry",
+		"Psychiatry",
 		"Public health",
 		"Surgery",
+		"Dermatology",
 	];
 
 	return (
@@ -92,21 +91,9 @@ const FormBody = (props: { enabled: boolean }) => {
 				label="Specialty of interest"
 				name="interest"
 				options={SpecialtyDropdownOptions}
-				onChange={(e) => {
-					toggleOtherSpecialty(e.target.value === "Other");
-				}}
 				placeholder=""
 				required={true}
 			/>
-			<div className={otherSpecialty ? "" : "hidden"}>
-				<Input
-					label="Specialty of interest"
-					name="interest"
-					type="text"
-					placeholder=""
-					required={otherSpecialty}
-				/>
-			</div>
 			<Input
 				label="Title of project"
 				name="projectTitle"
