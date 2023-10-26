@@ -20,7 +20,6 @@ export const Input = (props: {
 			>
 				{props.label}
 			</label>
-			<span className="group-invalid:after:*"></span>
 		</div>
 	);
 };
