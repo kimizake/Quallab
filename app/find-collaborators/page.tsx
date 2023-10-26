@@ -162,7 +162,7 @@ const FormBody = (props: { enabled: boolean }) => {
 			<RadioPanel
 				heading="Availability"
 				name="availability"
-				buttons={[{ label: "In Person" }, { label: "Online" }]}
+				buttons={[{ label: "In person" }, { label: "Online" }]}
 				required
 			/>
 			<RadioPanel
