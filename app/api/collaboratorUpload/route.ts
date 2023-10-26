@@ -9,7 +9,7 @@ const POST = async (req: Request) => {
 		const sheets = google.sheets({ auth, version: "v4" });
 		await sheets.spreadsheets.values.append({
 			spreadsheetId: process.env.SHEET_URL,
-			range: "researchers!A:Z",
+			range: "Researchers!A:Z",
 			valueInputOption: "USER_ENTERED",
 			requestBody: {
 				values: [
