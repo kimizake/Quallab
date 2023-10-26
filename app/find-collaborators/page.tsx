@@ -203,7 +203,7 @@ const FormBody = (props: { enabled: boolean }) => {
 						},
 					},
 					{
-						label: "Intermediate (some research experience",
+						label: "Intermediate (some research experience)",
 						onInput: () => {
 							setExperienceDetails(true);
 						},
