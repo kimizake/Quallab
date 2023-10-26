@@ -74,7 +74,7 @@ const FormBody = (props: { enabled: boolean }) => {
 				/>
 			</div>
 			<Input
-				label="Insutition email"
+				label="Institution email"
 				type="email"
 				name="email"
 				placeholder=""
