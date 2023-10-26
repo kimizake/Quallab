@@ -1,6 +1,4 @@
-import Image from "next/image";
 import { Button } from "./components/Button";
-import logo from "../assets/Quallab Grey Logo.png";
 import { righteous } from "./styles/fonts";
 
 export default function Home() {
@@ -8,7 +6,7 @@ export default function Home() {
 		{
 			label: "Find Collaborators",
 			href: "/find-collaborators",
-			text: "Connect with researchers to further your project",
+			text: "Connect with researchers",
 		},
 		{
 			label: "Find Research Projects",
@@ -17,7 +15,7 @@ export default function Home() {
 		},
 	];
 	return (
-		<main className="flex flex-col py-5 px-5 gap-10">
+		<main className="flex flex-col py-5 gap-10 w-full">
 			<div className="inline-flex justify-center">
 				<span className={`${righteous.className} text-7xl md:text-9xl`}>
 					Quallab
@@ -26,7 +24,7 @@ export default function Home() {
 			<div className="text-center">
 				Connecting students and researchers to foster meaningful collaboration
 			</div>
-			<div className="grid md:grid-cols-2 md:px-10 gap-6 justify-items-center justify-center">
+			<div className="grid grid-cols-1 md:grid-cols-2 md:px-10 gap-y-6 justify-items-center justify-center">
 				{BUTTONS.map((button, idx) => (
 					<div
 						className="flex flex-col w-full text-center space-y-2 items-center"

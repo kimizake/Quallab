@@ -35,7 +35,7 @@ const FormBody = (props: { enabled: boolean }) => {
 	const [accessRequirements, setAccessRequirements] = useState(false);
 	const [experienceDetails, setExperienceDetails] = useState(false);
 
-	const JobDropdownOptions = ["Medical student", "Junior doctor"];
+	const JobDropdownOptions = ["Medical student", "Doctor"];
 	const SpecialtyDropdownOptions = [
 		"Anaesthetics",
 		"Oncology",
@@ -57,7 +57,7 @@ const FormBody = (props: { enabled: boolean }) => {
 		<Fragment>
 			<div className="grid md:grid-cols-2 gap-5 md:gap-10">
 				<Input
-					label="First Name"
+					label="First name"
 					type="text"
 					name="firstName"
 					pattern="[A-Za-z]+"
@@ -65,24 +65,24 @@ const FormBody = (props: { enabled: boolean }) => {
 					required={true}
 				/>
 				<Input
-					label="Last Name"
+					label="Last name"
 					type="text"
 					name="lastName"
-					pattern="[A-Za-z]+"
+					pattern="[A-Za-z]+((\s|-)?[A-Za-z]+)?"
 					placeholder=""
 					required={true}
 				/>
 			</div>
 			<Input
-				label="Insutition Email"
+				label="Insutition email"
 				type="email"
 				name="email"
 				placeholder=""
-				pattern="[A-za-z0-9]+@ucl.ac.uk"
+				pattern="[A-Za-z]+\.[A-Za-z]+\.[0-9]+@ucl.ac.uk"
 				required={true}
 			/>
 			<Select
-				label="Job Title"
+				label="Job title"
 				name="jobTitle"
 				options={JobDropdownOptions}
 				placeholder=""
@@ -100,7 +100,7 @@ const FormBody = (props: { enabled: boolean }) => {
 			/>
 			<div className={otherSpecialty ? "" : "hidden"}>
 				<Input
-					label="Specialty of Interest"
+					label="Specialty of interest"
 					name="interest"
 					type="text"
 					placeholder=""
@@ -108,7 +108,7 @@ const FormBody = (props: { enabled: boolean }) => {
 				/>
 			</div>
 			<Input
-				label="Title of Project"
+				label="Title of project"
 				name="projectTitle"
 				type="text"
 				placeholder=""
@@ -151,7 +151,7 @@ const FormBody = (props: { enabled: boolean }) => {
 				min={new Date().toISOString().split("T")[0]}
 			/>
 			<Input
-				label="How many collaborators are you looking for"
+				label="How many collaborators are you looking for?"
 				name="numberOfCollaborators"
 				type="number"
 				min={0}
@@ -162,11 +162,11 @@ const FormBody = (props: { enabled: boolean }) => {
 			<RadioPanel
 				heading="Availability"
 				name="availability"
-				buttons={[{ label: "In Person" }, { label: "Online" }]}
+				buttons={[{ label: "In person" }, { label: "Online" }]}
 				required
 			/>
 			<RadioPanel
-				heading="Access Requirements"
+				heading="Access requirements"
 				name="accessRequirements"
 				buttons={[
 					{
@@ -193,17 +193,17 @@ const FormBody = (props: { enabled: boolean }) => {
 				/>
 			</div>
 			<RadioPanel
-				heading="Experience Level"
+				heading="Experience level"
 				name="experienceLevel"
 				buttons={[
 					{
-						label: "Beginner (No Research Experience)",
+						label: "Beginner (no research experience)",
 						onInput: () => {
 							setExperienceDetails(false);
 						},
 					},
 					{
-						label: "Intermediate (Some Research Experience",
+						label: "Intermediate (some research experience",
 						onInput: () => {
 							setExperienceDetails(true);
 						},
